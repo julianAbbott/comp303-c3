@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.comp303.common.*;
 
-public class Hand implements Comparable{ 
+public class Hand implements Comparable<Hand>{ 
 	
 	private final int aNumCards;
 	private ArrayList<Card> aHandCards;
@@ -16,7 +16,7 @@ public class Hand implements Comparable{
 	
 	public void add(Card pCard){
 		assert pCard != null;
-		assert ! this.isFull();
+		assert !this.isFull();
 		
 		aHandCards.add(pCard);
 	}
@@ -41,12 +41,13 @@ public class Hand implements Comparable{
 	}
 	
 	public Boolean isFull() {
-		return aHandCards.size() < aNumCards;
+		return ! (aHandCards.size() < aNumCards);
 	}
 
 	@Override
-	public int compareTo(Object arg0) {
-		Hand casted = (Hand) arg0;
-		return this.size()-casted.size();
+	public int compareTo(Hand pHand) {
+		return this.size() - pHand.size(); 
 	}
+	
+	
 }
